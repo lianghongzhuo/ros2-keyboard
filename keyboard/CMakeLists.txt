@@ -11,6 +11,11 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
 endif()
 
+# Default to release build
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
@@ -22,17 +27,18 @@ find_package(std_msgs REQUIRED)
 find_package(SDL REQUIRED)
 find_package(keyboard_msgs REQUIRED)
 
-set(LIBS ${SDL_LIBRARY} SDL::SDL)
-include_directories(${SDL_INCLUDE_DIR})
-
 add_executable(keyboard src/keyboard.cpp)
 ament_target_dependencies(keyboard rclcpp std_msgs keyboard_msgs)
-target_include_directories(keyboard PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
+target_include_directories(keyboard
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+  PRIVATE
+    ${SDL_INCLUDE_DIR}
+)
 
 target_link_libraries(keyboard
-  ${LIBS}
+  SDL
 )
 
 
@@ -43,6 +49,10 @@ install(
     PROGRAMS
         scripts/keyboard_to_joy.py
     DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY config
+  DESTINATION share/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)

@@ -40,13 +40,12 @@ Converts keyboard events to a joy message.
 ### Example:
 
 In one terminal, start the `keyboard` node.
-```
-$ ros2 run keyboard keyboard
+```shell
+ros2 run keyboard keyboard
 ```
 
 In a second terminal, start the `keyboard_to_joy.py` node.
+```shell
+ros2 run keyboard keyboard_to_joy.py --ros-args \
+  -p config_file_name:=`ros2 pkg prefix keyboard`/share/keyboard/config/example_config.yaml
 ```
-$ ros2 run keyboard keyboard_to_joy.py --ros-args -p config_file_name:=/path/to/keyboard/config/example_config.yaml
-```
-
-Remember to replace `/path/to` with the path to where you cloned the `keyboard` repository.
