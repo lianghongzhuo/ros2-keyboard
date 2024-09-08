@@ -49,5 +49,3 @@ In a second terminal, start the `keyboard_to_joy.py` node.
 ros2 run keyboard keyboard_to_joy.py --ros-args \
   -p config_file_name:=`ros2 pkg prefix keyboard`/share/keyboard/config/example_config.yaml
 ```
-
-Remember to replace `/path/to` with the path to where you cloned the `keyboard` repository.

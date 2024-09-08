@@ -27,17 +27,18 @@ find_package(std_msgs REQUIRED)
 find_package(SDL REQUIRED)
 find_package(keyboard_msgs REQUIRED)
 
-set(LIBS ${SDL_LIBRARY} SDL::SDL)
-include_directories(${SDL_INCLUDE_DIR})
-
 add_executable(keyboard src/keyboard.cpp)
 ament_target_dependencies(keyboard rclcpp std_msgs keyboard_msgs)
-target_include_directories(keyboard PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
+target_include_directories(keyboard
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+  PRIVATE
+    ${SDL_INCLUDE_DIR}
+)
 
 target_link_libraries(keyboard
-  ${LIBS}
+  SDL
 )
 
 
