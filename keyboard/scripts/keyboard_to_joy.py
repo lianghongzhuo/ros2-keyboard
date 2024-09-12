@@ -69,7 +69,7 @@ class KeyboardToJoyNode(Node):
         super().__init__("keyboard_to_joy_node")
 
         # Get parameters
-        self.declare_parameter("config_file_name")
+        self.declare_parameter("config_file_name", "")
         config_file_name = (
             self.get_parameter("config_file_name").get_parameter_value().string_value
         )
