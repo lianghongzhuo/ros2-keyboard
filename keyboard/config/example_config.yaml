@@ -3,4 +3,6 @@ axes:
   - ["KEY_UP", "KEY_DOWN"]
 
 buttons:
+  - "KEY_LCTRL"
+  - "KEY_LALT"
   - "KEY_SPACE"
