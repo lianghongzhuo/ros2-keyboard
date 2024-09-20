@@ -3,6 +3,6 @@ axes:
   - ["KEY_UP", "KEY_DOWN"]
 
 buttons:
-  - "KEY_A"
   - "KEY_C"
+  - "KEY_A"
   - "KEY_B"
