@@ -18,6 +18,7 @@ def generate_launch_description():
     )
 
     keyboard_to_joy_node = Node(
+        namespace="foot_pedal_state",
         package="keyboard",
         executable="keyboard_to_joy.py",
         output="screen",
