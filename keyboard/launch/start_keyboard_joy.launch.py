@@ -27,6 +27,7 @@ def generate_launch_description():
         ],
     )
     keyboard_node = Node(
+        namespace="foot_pedal_state",
         package="keyboard",
         executable="keyboard",
         output="screen",
