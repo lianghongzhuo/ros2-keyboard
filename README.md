@@ -11,8 +11,8 @@ This window needs to becurrently focused, otherwise this node will not receive a
 3. Clone this repository
   - (ssh) `$ git clone git@github.com:cmower/ros2-keyboard.git`
   - (https) `$ git clone https://github.com/cmower/ros2-keyboard.git`
-4. Install SDL 1.2 with the command `sudo apt install libsdl1.2-dev`.
-5. `$ cd /path/to/your_ws`
+4. `$ cd /path/to/your_ws`
+5. Install SDL 1.2 with the command, `$ rosdep install --from-paths src --ignore-src`.
 6. `$ colcon build`
 
 # Nodes
@@ -48,4 +48,9 @@ In a second terminal, start the `keyboard_to_joy.py` node.
 ```shell
 ros2 run keyboard keyboard_to_joy.py --ros-args \
   -p config_file_name:=`ros2 pkg prefix keyboard`/share/keyboard/config/example_config.yaml
+```
+
+Or, to make easier, you can run the `launch` directly:
+```shell
+ros2 launch keyboard keyboard_to_joy.launch.py 
 ```
